@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        /* sinup */
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .nav-is-toggled .nav-drill {
+            transform: translateX(0);
+            background: rgb(255, 255, 255);
+            right: -32px;
+            position: absolute;
+            width: 360px;
+            top: -51px;
+            height: 600px;
+        }
+        
+        .nav-top .hamburger {
+            margin-left: auto;
+            color: #fff;
+            cursor: pointer;
+        }
+        
+        .nav-drill {
+            display: flex;
+            position: fixed;
+            z-index: 100;
+            top: 0;
+            right: 0;
+            width: 250px;
+            height: 100vh;
+            background-color: #fff;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            transition: -288.55s;
+        }
+        
+        .nav-drill {
+            margin-top: 50px;
+            transform: translateX(100%);
+        }
+        
+        .nav-is-toggled::after {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .nav-item:not(:last-child) {
+            border-bottom: solid 1px #daf9f4;
+        }
+        
+        .nav-expand-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: translateX(100%);
+            background-color: #daf9f4;
+            transition: 0.3s;
+            visibility: hidden;
+        }
+        
+        .nav-expand-content .nav-item:not(:last-child) {
+            border-bottom: solid 1px #20b49c;
+        }
+        
+        .nav-expand-content .nav-link {
+            background-color: #daf9f4;
+        }
+        
+        .nav-expand-content .nav-back-link {
+            display: flex;
+            align-items: center;
+            background-color: #20b49c !important;
+            color: #fff;
+        }
+        
+        .nav-expand-content .nav-back-link::before {
+            margin-right: 0.5em;
+            font-family: "Material Icons";
+        }
+        
+        .nav-expand-link {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .nav-expand-link::after {
+            flex: 0 1 auto;
+            font-family: "Material Icons";
+        }
+        
+        .nav-expand.active>.nav-expand-content {
+            transform: translateX(0);
+            visibility: visible;
+        }
+        
+        .nav-expand .nav-expand-content {
+            background-color: #daf9f4;
+        }
+        
+        .nav-expand .nav-expand-content .nav-link {
+            background-color: #daf9f4;
+        }
+        
+        .nav-expand .nav-expand-content .nav-expand-content {
+            background-color: #aff1e6;
+        }
+        
+        .nav-expand .nav-expand-content .nav-expand-content .nav-link {
+            background-color: #aff1e6;
+        }
+        
+        .nav-expand .nav-expand-content .nav-expand-content .nav-expand-content {
+            background-color: #84e9d9;
+        }
+        
+        .nav-expand .nav-expand-content .nav-expand-content .nav-expand-content .nav-link {
+            background-color: #84e9d9;
+        }
+        
+        .nav-expand .nav-expand-content .nav-expand-content .nav-expand-content .nav-expand-content {
+            background-color: #59e1cb;
+        }
+        
+        .nav-expand .nav-expand-content .nav-expand-content .nav-expand-content .nav-expand-content .nav-link {
+            background-color: #59e1cb;
+        }
+        /* sin up */
+        
+        button.btn-login {
+            border-radius: 0px;
+            position: absolute;
+            width: 184px;
+            border-width: 0px;
+            background: #ff2c70;
+            left: 52px;
+            top: 170px;
+            height: 34px;
+            font-size: 18px;
+            color: white;
+            font-family: monospace;
+            text-shadow: 3px -1px 2px black;
+            border-radius: 5px;
+        }
+        
+        body {
+            background: #f0eeee;
+        }
+        
+        p.heder {
+            position: absolute;
+            /* border: solid; */
+            border: solid;
+            width: 1000px;
+            top: -12px;
+            height: 45px;
+            background: black;
+        }
+        
+        p.dtoc {
+            position: absolute;
+            color: wi;
+            color: white;
+            top: -26px;
+            left: 29px;
+            font-size: 33px;
+            text-shadow: -4px 2px 5px red;
+            font-family: Magneto;
+        }
+        
+        p.login {
+            position: absolute;
+            font-size: 18px;
+            color: white;
+            left: 889px;
+            top: -8px;
+            border: solid;
+            font-family: sans-serif;
+            width: 45px;
+            padding: -2px;
+            background: #ff2c70;
+            border-color: #ff2c70;
+            border-left-width: 33px;
+            text-align: center;
+            border-right-width: 30px;
+            border-bottom-width: 6px;
+            border-top-width: 6px;
+            cursor: pointer;
+        }
+        
+        i.material-icons {
+            left: 800px;
+            top: 15px;
+            cursor: pointer;
+            position: absolute;
+            color: white;
+        }
+        
+        p.for.you {
+            position: absolute;
+            top: 67px;
+            left: 40px;
+            font-size: 20px;
+            font-family: sans-serif;
+            text-shadow: -1px -1px black;
+            cursor: pointer;
+        }
+        
+        p.for.following {
+            position: absolute;
+            top: 104px;
+            font-size: 20px;
+            left: 40px;
+            font-family: sans-serif;
+            text-shadow: -1px -1px black;
+        }
+        
+        i#for\ you {
+            position: absolute;
+            color: black;
+            left: -32px;
+            top: -2px;
+            cursor: pointer;
+        }
+        
+        i.fa {
+            position: absolute;
+            font-size: 18px;
+            left: 82px;
+            left: -31px;
+            top: 1px;
+            cursor: pointer;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+        .loginbtn ul {
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+            position: absolute;
+            top: 99px;
+            border: solid;
+            width: 532px;
+            left: 225px;
+            height: 556px;
+            top: 43px;
+            background: lavenderblush;
+        }
+        
+        .loginbtn.active ul {
+            opacity: 1;
+            visibility: visible;
+            transition: .3s;
+        }
+        
+        .loginbtn ul li {}
+        
+        .loginbtn ul li:hover {}
+        
+        .loginbtn ul li:not(:last-child) {}
+        /* .loginbtn */
+        
+        @import url("https://fonts.googleapis.com/css?family=Josefin+Sans:700");
+        .hero__phone {
+            width: 300px;
+            height: 630px;
+            position: absolute;
+            top: 33px;
+        }
+        
+        .menu__button {
+            position: absolute;
+            font-size: 18px;
+            color: white;
+            left: 881px;
+            top: -24px;
+            border: solid;
+            font-family: sans-serif;
+            padding: -2px;
+            background: #ff2c70;
+            border-color: #ff2c70;
+            border-left-width: 29px;
+            text-align: center;
+            border-right-width: 26px;
+            border-bottom-width: 6px;
+            border-top-width: 6px;
+            cursor: pointer;
+        }
+        
+        .menu__body {
+            width: 300px;
+            background: rgb(255, 255, 255);
+            padding-bottom: 15px;
+            position: absolute;
+            top: 30px;
+            height: 400px;
+            left: 307px;
+            border: solid;
+            border-width: 1px;
+            border-color: gray;
+        }
+        
+        .menu__header button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 25px;
+            height: 25px;
+            background: var(--neutral-dark);
+            border-radius: 50%;
+            cursor: pointer;
+            border: hidden;
+        }
+        
+        h6#h6 {
+            position: absolute;
+            border-top: solid;
+            width: 18px;
+            transform: rotate( 45deg);
+        }
+        
+        h6#h7 {
+            position: absolute;
+            border-top: solid;
+            width: 18px;
+            transform: rotate( -45deg);
+        }
+        
+        div#border1 {
+            position: absolute;
+            border: solid;
+            width: 300px;
+            border-width: 1px;
+            height: 50px;
+            top: 437px;
+            background: white;
+            border-color: grey;
+        }
+        
+        p.dtoclogin {
+            position: absolute;
+            color: black;
+            top: -24px;
+            left: 84px;
+            font-size: 25px;
+            text-shadow: -4px 2px 5px red;
+            font-family: Magneto;
+        }
+        
+        button.btn-login {
+            border-radius: 0px;
+            position: absolute;
+            width: 184px;
+            border-width: 0px;
+            background: #ff2c70;
+            left: 52px;
+            top: 170px;
+            height: 34px;
+            font-size: 18px;
+            color: white;
+            font-family: monospace;
+            text-shadow: 3px -1px 2px black;
+            border-radius: 5px;
+        }
+        
+        input.passwordlogin {
+            position: absolute;
+            top: 125px;
+            left: 53px;
+            height: 28px;
+            width: 178px;
+            background: #f0eeee;
+            border-width: 1px;
+            border-radius: 5px;
+        }
+        
+        input.usernamelogin {
+            position: absolute;
+            top: 82px;
+            left: 53px;
+            height: 28px;
+            width: 178px;
+            background: #f0eeee;
+            border-width: 1px;
+            border-radius: 5px;
+        }
+        
+        span#or1 {
+            position: absolute;
+            border-bottom: solid;
+            width: 120px;
+            top: 230px;
+            border-width: 2px;
+            color: #dbdbdb;
+            left: 6px;
+        }
+        
+        span#or2 {
+            position: absolute;
+            border-bottom: solid;
+            width: 120px;
+            top: 230px;
+            border-width: 2px;
+            color: #dbdbdb;
+            left: 174px;
+        }
+        
+        span#or3 {
+            position: absolute;
+            color: #b1b0b0;
+            top: 223px;
+            left: 140px;
+            font-size: 15px;
+        }
+        
+        img#fecbook {
+            position: absolute;
+            top: 254px;
+            left: 30px;
+            height: 16px;
+            cursor: pointer;
+        }
+        
+        text#textfacbook {
+            position: absolute;
+            left: 90px;
+            color: #0097ff;
+            top: 253px;
+            cursor: pointer;
+        }
+        
+        img#instagram {
+            position: absolute;
+            top: 290px;
+            left: 30px;
+            height: 16px;
+            cursor: pointer;
+        }
+        
+        text#textinstagram {
+            position: absolute;
+            left: 90px;
+            color: #0097ff;
+            top: 290px;
+            cursor: pointer;
+        }
+        
+        img#twitter {
+            position: absolute;
+            top: 325px;
+            left: 30px;
+            height: 16px;
+            cursor: pointer;
+        }
+        
+        text#texttwitter {
+            position: absolute;
+            left: 90px;
+            color: #0097ff;
+            top: 325px;
+            cursor: pointer;
+        }
+        
+        text#forgotpassword {
+            position: absolute;
+            top: 363px;
+            left: 102px;
+            color: #21129a;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        text#login\ \(To\)\ sinup {
+            position: absolute;
+            top: 453px;
+            left: 33px;
+        }
+        
+        span#ham {
+            position: relative;
+            top: 428px;
+            left: 194px;
+            color: #009eff;
+            cursor: pointer;
+        }
+        
+        span#d {
+            position: absolute;
+            left: 4px;
+            top: -8px;
+            font-family: cursive;
+            font-size: 26px;
+            transform: rotateZ( 45deg);
+            cursor: pointer;
+        }
+        
+        li.nav-item.nav-expand {
+            list-style: none;
+        }
+        
+        .nav-items {
+            flex: 0 0 100%;
+        }
+        
+        text#tocvidsineuplogo {
+            position: absolute;
+            color: black;
+            top: 3px;
+            left: 106px;
+            font-size: 25px;
+            text-shadow: -4px 2px 5px red;
+            font-family: Magneto;
+        }
+        
+        text#signup1 {
+            position: absolute;
+            color: black;
+            top: 43px;
+            font-size: 24px;
+            font-family: monospace;
+            left: 124px;
+            font-weight: bold;
+            text-shadow: 0px 0px 4px black;
+        }
+        
+        input#sigup2 {
+            height: 26px;
+            background: #fdf6f6;
+            left: 62px;
+            top: 32px;
+            position: absolute;
+            width: 200px;
+            border-width: 1px;
+            border-radius: 3px;
+        }
+        
+        span#input\ frist\ name {
+            position: absolute;
+            top: 85px;
+            /* height: 74px; */
+            left: 8px;
+        }
+        
+        span#input\ last\ name {
+            position: absolute;
+            top: 142px;
+            left: 8px;
+        }
+        
+        span#input\ user\ name {
+            position: absolute;
+            left: 8px;
+            top: 198px;
+        }
+        
+        input#sigup3 {
+            height: 26px;
+            background: #fdf6f6;
+            left: 62px;
+            position: absolute;
+            width: 200px;
+            border-width: 1px;
+            border-radius: 3px;
+        }
+        
+        span#input\ password {
+            position: absolute;
+            left: 8px;
+            top: 283px;
+        }
+        
+        span#input\ Emile {
+            position: absolute;
+            left: 8px;
+            top: 309px;
+        }
+        
+        input#signup4 {
+            position: absolute;
+            width: 203px;
+            left: 70px;
+            top: 397px;
+            border-radius: 3px;
+            border-width: 1px;
+            height: 28px;
+            background: bisque;
+        }
+        
+        input#sid {
+            top: 453px;
+            position: absolute;
+            width: 203px;
+            left: 70px;
+            border-radius: 3px;
+            border-width: 1px;
+            height: 28px;
+        }
+        
+        span#gendersinup {
+            position: absolute;
+            top: 501px;
+            left: 70px;
+            font-size: 15px;
+            font-family: monospace;
+        }
+        
+        text#signup\+1 {
+            position: absolute;
+            top: 544px;
+            left: 114px;
+            border: solid;
+            border-color: #ff2c70;
+            background: #ff2c70;
+            border-right-width: 33px;
+            border-left-width: 33px;
+            border-bottom-width: 8px;
+            border-top-width: 8px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: monospace;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="hader">
+        <span class="heder">
+            <header class="login">
+                <p class="login">Login</p>
+            </header>
+            <p class="heder">
+           <p class="dtoc">D Toc Vid</p>
+            </p>
+            <header class="login">
+                <div id="loginbuttion">
+
+                   
+                <p class="login">Login</p>
+               
+            
+            </header>
+            <p class="upload"><i class="material-icons">&#xe2c3;</i>
+            </p>
+        </span>
+        <div class="right menu">
+            <span class="right menu">
+                <p class="for you">
+                    <icon class="for you">
+                        <i class="material-icons" id="for you">&#xe88a;</i>
+                    </icon>
+                For You
+                </p>
+                <p class="for following">
+
+                    <icon class="following" id="following"><i style="font-size:24px" class="fa">&#xf0c0;</i></icon>
+                    Following
+                </p>
+                <login class="login">
+                    Log in
+                </login>
+                <div class="hero__wrapper">
+
+                    <div class="hero__phone">
+                        <button class="menu__button">
+                        <div>
+                          <div></div>
+                        </div>Login
+                      </button>
+        <section class="menu__body" hidden="">
+                            <div id="border1"></div>
+                            <div class="menu__header">
+                                <label> 
+                            <div></div>
+                          </label>
+                
+                                <button title="Close">
+                        <p id="closelogo">
+                            <h6 id="h6"></h6>
+                            <h6 id="h7"></h6>
+                        </p>
+                        </button>
+                        <div id="logindtvlogo">
+                            <p class="dtoclogin">D Toc Vid</p>
+                        <div class="loginput">
+                            <input type="text"  placeholder="username" class="usernamelogin">  
+                            <input type="password" placeholder="Password" class="passwordlogin">
+                        </div>
+                            <div class="{(or border)}">
+                            <span class="border {(or)}" id="or1"></span>
+            <span class="border {(or)}" id="or2"></span>
+            <span class="border {(or)}" id="or3">OR</span>
+        </div>
+        <button type="submit" class="btn-login">Login</button>
+        <div class="share">
+            <img src="facbook.png" alt="" id="fecbook">
+            <text id="textfacbook">Log in with facbook</text>
+            <img src="instagram.png" alt="" id="instagram">
+            <text id="textinstagram">Log in with instagram</text>
+            <img src="twitter.png" alt="" id="twitter">
+            <text id="texttwitter">Log in with twitter</text>
+        </div>
+        <div class="forgot password">
+            <text id="forgotpassword">Forgot password?</text>
+        </div>
+        <div class="login (to) sinup">
+            <text id="login (To) sinup">Don't have an account?</text>
+            <header class="nav-top">
+                <span id="ham">  Sign up</span>
+            </header>
+            <nav class="nav-drill">
+                <ul class="nav-items nav-level-1">
+                    <li class="nav-item nav-expand"><span id="d">+</span>
+                        <a class="nav-link nav-expand-link">
+                            <div class="sinup">
+                                <text id="tocvidsineuplogo">D Toc Vid</text>
+                                <text id="signup1">Sign Up</text>
+                            </div>
+                            <span id="input frist name"><input  id="sigup2" type="text" value="" placeholder="Frist Name"></span>
+                            <span id="input last name"><input  id="sigup2" type="text" placeholder="Nic Name"></span>
+                            <span id="input user name"><input  id="sigup2" type="text" placeholder="@user.1234"></span>
+                            <span id="input password"><input  id="sigup3" type="password" placeholder="password"></span>
+                            <span id="input Emile"><input  id="sigup2" type="text" placeholder="Emile"></span>
+                            <input type="date" id="signup4" name="trip-start" value="" min="1890-01-01" max="2025-01-01">
+                            <input type="number" min="15" value="15" max="100" id="sid" placeholder="age" />
+                            <span id="gendersinup">
+                              <input type="radio" name="gender" id="gender1"><label for="gen.male">male</label>
+                              <input type="radio" name="gender" id="gender2"><label for="gen.female">female</label>
+                              <input type="radio" name="gender" id="gender3"><label for="gen.other">other</label>
+                            </span>
+                            <div class="singup01">
+
+
+
+
+                                <text id="signup+1">
+                                 sign up
+                            </text>
+                            </div>
+                        </a>
+
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+        </section>
+
+    </div>
+    <div class="menu__overlay" hidden=""></div>
+    </div>
+    </div>
+    </span>
+    </div>
+
+    </div>
+
+
+    <script>
+        // login
+        const button = document.querySelector('.menu__button');
+        const menu = document.querySelector('.menu__body');
+        const close = document.querySelector('.menu__header button');
+        const overlay = document.querySelector('.menu__overlay');
+
+        function showMenu() {
+            button.setAttribute('hidden', '');
+            menu.removeAttribute('hidden');
+            overlay.removeAttribute('hidden');
+        };
+
+        function hideMenu() {
+            menu.setAttribute('hidden', '');
+            overlay.setAttribute('hidden', '');
+            button.removeAttribute('hidden');
+        };
+
+        button.addEventListener('click', showMenu);
+        close.addEventListener('click', hideMenu);
+        overlay.addEventListener('click', hideMenu);
+
+
+
+        console.clear();
+
+        const navExpand = [].slice.call(document.querySelectorAll('.nav-expand'));
+        const backLink = `<li class="nav-item">
+<a class="nav-link nav-back-link" href="javascript:;">
+  +
+</a>
+</li>`;
+
+        navExpand.forEach(item => {
+
+            item.querySelector('.nav-link').addEventListener('click', () => item.classList.add('active'));
+
+        });
+
+
+        // ---------------------------------------
+        // not-so-important stuff starts here
+
+        const ham = document.getElementById('ham');
+        ham.addEventListener('click', function() {
+            document.body.classList.toggle('nav-is-toggled');
+        });
+        const d = document.getElementById('d');
+        d.addEventListener('click', function() {
+            document.body.classList.toggle('nav-is-toggled');
+        });
+    </script>
+</body>
+
+</html>
